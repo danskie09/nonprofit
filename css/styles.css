@@ -257,6 +257,8 @@ section {
     max-width: 600px;
 }
 
+
+
 /* Mission Section */
 .mission-card, .value-card {
     background-color: var(--white);
@@ -371,6 +373,165 @@ section {
 .value-card:hover .value-icon {
     background-color: var(--primary-color);
     color: var(--white);
+}
+
+/* Mission & Vision Section Improvements */
+#mission {
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 80px;
+}
+
+.mission-card {
+    position: relative;
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Subtle background colors for cards */
+.mission-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-light);
+    opacity: 0.3;
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+/* Add a subtle background pattern */
+.mission-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23FFCDB2" fill-opacity="0.15" d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+.mission-card-1::after {
+    top: -40px;
+    right: -40px;
+}
+
+.mission-card-2::after {
+    bottom: -40px;
+    left: -40px;
+    top: auto;
+    right: auto;
+}
+
+.mission-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mission-card:hover::before {
+    opacity: 0.4;
+}
+
+.mission-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 205, 178, 0.2);
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.mission-card:hover .mission-icon-wrapper {
+    background-color: rgba(255, 205, 178, 0.4);
+}
+
+.mission-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+/* Core Values improvements */
+.values-section {
+    position: relative;
+    margin-top: 70px;
+    padding-top: 50px;
+}
+
+.values-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: var(--primary-light);
+}
+
+.value-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: var(--primary-color);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.value-card:hover::before {
+    opacity: 1;
+    height: 7px;
+}
+
+.value-icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 205, 178, 0.2);
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin: 0 auto 20px;
+    transition: all 0.3s ease;
+}
+
+.value-card:hover .value-icon {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: scale(1.1);
 }
 
 /* Events Section */
