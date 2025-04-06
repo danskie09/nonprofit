@@ -1,9 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Add active class to nav items on scroll
+    // Elements
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    const navbar = document.querySelector('.navbar');
+    const elements = document.querySelectorAll('.mission-card, .value-card, .event-card, .gallery-item');
     
+    // Initialize animations
+    elements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'all 0.6s ease';
+    });
+    
+    setTimeout(animateOnScroll, 300);
+    
+    // Function to handle navbar appearance on scroll
+    function updateNavbar() {
+        if (window.scrollY > 50) {
+            navbar.classList.remove('navbar-transparent');
+            navbar.classList.add('navbar-hero-bg');
+        } else {
+            navbar.classList.add('navbar-transparent');
+            navbar.classList.remove('navbar-hero-bg');
+        }
+    }
+    
+    // Initial check on page load
+    updateNavbar();
+    
+    // Add scroll event listener
     window.addEventListener('scroll', function() {
+        // Update active navigation link
         let current = '';
         
         sections.forEach(section => {
@@ -21,15 +48,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Navbar background change on scroll
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 0) {
-            navbar.style.padding = '15px 0';
-            navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.padding = '20px 0';
-            navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.05)';
-        }
+        // Navbar transition effect
+        updateNavbar();
+        
+        // Animate elements when scrolled into view
+        animateOnScroll();
     });
     
     // Smooth scrolling for navbar links
@@ -39,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            const navbarHeight = navbar.offsetHeight;
             
             window.scrollTo({
                 top: targetSection.offsetTop - navbarHeight,
@@ -54,10 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Animation on scroll (optional - for more advanced effects)
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.mission-card, .value-card, .event-card, .gallery-item');
-        
+    // Animation on scroll function
+    function animateOnScroll() {
         elements.forEach(element => {
             const elementPosition = element.getBoundingClientRect().top;
             const windowHeight = window.innerHeight;
@@ -67,19 +88,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.style.transform = 'translateY(0)';
             }
         });
-    };
-    
-    // Initialize animations
-    document.addEventListener('DOMContentLoaded', function() {
-        const elements = document.querySelectorAll('.mission-card, .value-card, .event-card, .gallery-item');
-        elements.forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'all 0.6s ease';
-        });
-        
-        setTimeout(animateOnScroll, 300);
-    });
-    
-    window.addEventListener('scroll', animateOnScroll);
+    }
 });
